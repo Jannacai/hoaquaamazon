@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import styles from './Header.module.css'
 import Navigation from '@/components/Navigation/Navigation'
 import AuthButton from '@/components/AuthButton/AuthButton'
@@ -8,6 +9,7 @@ import AuthButton from '@/components/AuthButton/AuthButton'
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,7 +39,13 @@ export default function Header() {
             <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
                 <div className={styles.container}>
                     <div className={styles.logo}>
-                        <h2>🍎Hoa Quả Amazon</h2>
+                        <Image 
+                            src="/images/fruit-background.svg" 
+                            alt="Hoa Quả Amazon" 
+                            width={150} 
+                            height={50} 
+                            priority
+                        />
                         <p className={styles.logoDescription}>Nhanh gọn và tận tâm</p>
                     </div>
 
@@ -53,11 +61,18 @@ export default function Header() {
                                 </button>
                             </>
                         )}
+                        {isMobile && (
+                            <button 
+                                className={styles.hamburger} 
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            >
+                                ☰
+                            </button>
+                        )}
                         <AuthButton />
                     </div>
                 </div>
 
-                {/* Mobile Search and Cart Bar */}
                 {isMobile && (
                     <div className={styles.mobileSearchBar}>
                         <div className={styles.searchContainer}>
@@ -76,7 +91,18 @@ export default function Header() {
                 )}
             </header>
 
-            {/* Mobile Bottom Navigation */}
+            {isMobile && isMenuOpen && (
+                <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ''}`}>
+                    <Navigation />
+                    <button 
+                        className={styles.closeMenu}
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        ✕
+                    </button>
+                </div>
+            )}
+
             {isMobile && (
                 <nav className={styles.mobileBottomNav}>
                     <button className={styles.navItem}>
