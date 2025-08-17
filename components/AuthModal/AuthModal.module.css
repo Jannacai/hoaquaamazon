@@ -1,0 +1,531 @@
+/* Modern Simple Auth Modal */
+.overlay {
+	position: fixed;
+	top: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	z-index: 1000;
+	padding: 20px;
+	box-sizing: border-box;
+	margin: 0 !important;
+}
+
+.modal {
+	background: white;
+	border-radius: 16px;
+	width: 75vw;
+	height: 70vh;
+	max-width: 1100px;
+	max-height: 700px;
+	min-height: 550px;
+	min-width: 900px;
+	position: relative;
+	display: flex;
+	overflow: hidden;
+	box-sizing: border-box;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.closeButton {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	background: #f3f4f6;
+	border: none;
+	border-radius: 6px;
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+	color: #6b7280;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	z-index: 10;
+}
+
+.closeButton:hover {
+	background: #e5e7eb;
+	color: #374151;
+}
+
+.modalContent {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+/* Left Side - Branding */
+.imageSection {
+	flex: 0 0 42%;
+	background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.imageContent {
+	text-align: center;
+	color: white;
+	padding: 50px 40px;
+}
+
+.logoSection {
+	margin-bottom: 32px;
+}
+
+.logoIcon {
+	font-size: 3.5rem;
+	margin-bottom: 16px;
+	display: block;
+}
+
+.logoTitle {
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		sans-serif;
+}
+
+.welcomeText {
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin-bottom: 16px;
+}
+
+.description {
+	font-size: 1rem;
+	opacity: 0.9;
+	line-height: 1.6;
+	font-weight: 300;
+	max-width: 280px;
+	margin: 0 auto;
+}
+
+/* Right Side - Form */
+.formSection {
+	flex: 0 0 58%;
+	display: flex;
+	flex-direction: column;
+	background: white;
+}
+
+.formHeader {
+	text-align: center;
+	padding: 10px 10px 10px;
+	border-bottom: 1px solid #f1f5f9;
+}
+
+.formTitle {
+	font-size: 2rem;
+	font-weight: 600;
+	margin: 0 0 8px 0;
+	color: #1e293b;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		sans-serif;
+}
+
+.formSubtitle {
+	font-size: 1rem;
+	color: #64748b;
+	margin: 0;
+	font-weight: 400;
+}
+
+.form {
+	flex: 1;
+	padding: 10px 10px 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.formContent {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.inputRow {
+	display: flex;
+	gap: 20px;
+}
+
+.inputRow .inputGroup {
+	flex: 1;
+	margin-bottom: 0;
+}
+
+.inputGroup {
+	display: flex;
+	flex-direction: column;
+	/* gap: 8px; */
+}
+
+.inputGroup input {
+	width: 100%;
+	/* padding: 14px 18px; */
+	border: 1.5px solid #e2e8f0;
+	border-radius: 10px;
+	/* font-size: 1rem; */
+	transition: border-color 0.2s ease;
+	background: #ffffff;
+	box-sizing: border-box;
+	font-family: inherit;
+}
+
+.inputGroup input:focus {
+	outline: none;
+	border-color: #4f46e5;
+}
+
+.inputGroup input::placeholder {
+	color: #94a3b8;
+	font-weight: 400;
+}
+
+.inputGroup input.error {
+	border-color: #ef4444;
+	background: #fef2f2;
+}
+
+.errorMessage {
+	color: #ef4444;
+	font-size: 0.8rem;
+	font-weight: 500;
+}
+
+.message {
+	padding: 12px 16px;
+	border-radius: 6px;
+	text-align: center;
+	font-weight: 500;
+	font-size: 0.9rem;
+}
+
+.message.success {
+	background: #dcfce7;
+	color: #166534;
+	border: 1px solid #bbf7d0;
+}
+
+.message.errorMsg {
+	background: #fef2f2;
+	color: #dc2626;
+	border: 1px solid #fecaca;
+}
+
+.submitButton {
+	width: 100%;
+	background: #4f46e5;
+	color: white;
+	border: none;
+	padding: 14px 24px;
+	border-radius: 10px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+	font-family: inherit;
+	margin-top: 8px;
+}
+
+.submitButton:hover:not(:disabled) {
+	background: #4338ca;
+}
+
+.submitButton:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.formFooter {
+	/* margin-top: 28px; */
+}
+
+.switchMode {
+	text-align: center;
+	margin-bottom: 16px;
+}
+
+.switchMode p {
+	color: #64748b;
+	margin: 0;
+	font-size: 0.9rem;
+}
+
+.switchButton {
+	background: none;
+	border: none;
+	color: #4f46e5;
+	font-weight: 600;
+	cursor: pointer;
+	margin-left: 4px;
+	font-size: 0.9rem;
+	transition: color 0.2s ease;
+}
+
+.switchButton:hover {
+	color: #4338ca;
+}
+
+.forgotPassword {
+	text-align: center;
+	margin-bottom: 16px;
+}
+
+.forgotButton {
+	background: none;
+	border: none;
+	color: #64748b;
+	font-size: 0.85rem;
+	cursor: pointer;
+	transition: color 0.2s ease;
+}
+
+.forgotButton:hover {
+	color: #4f46e5;
+}
+
+.socialLogin {
+	border-top: 1px solid #f1f5f9;
+	/* padding-top: 24px; */
+}
+
+.divider {
+	position: relative;
+	text-align: center;
+	margin-bottom: 16px;
+}
+
+.divider::before {
+	content: '';
+	position: absolute;
+	top: 30px;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: #e2e8f0;
+}
+
+.divider span {
+	background: white;
+	color: #94a3b8;
+	padding: 0 12px;
+	font-size: 0.8rem;
+	font-weight: 500;
+}
+
+.socialButtons {
+	display: flex;
+	gap: 16px;
+}
+
+.socialButton {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 12px 20px;
+	border: 1.5px solid #e2e8f0;
+	border-radius: 10px;
+	background: white;
+	color: #374151;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 0.9rem;
+}
+
+.socialButton:hover {
+	border-color: #cbd5e1;
+	background: #f8fafc;
+}
+
+.googleIcon {
+	width: 16px;
+	height: 16px;
+	background: #4285f4;
+	color: white;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 10px;
+}
+
+.facebookIcon {
+	width: 16px;
+	height: 16px;
+	background: #1877f2;
+	color: white;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+	.modal {
+		width: 80vw;
+		height: 75vh;
+		min-width: 800px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.modal {
+		width: 85vw;
+		height: 78vh;
+		min-width: 700px;
+	}
+
+	.formHeader {
+		padding: 10px 10px 10px;
+	}
+
+	.form {
+		padding: 28px 40px 24px;
+	}
+}
+
+@media (max-width: 768px) {
+	.overlay {
+		padding: 16px;
+	}
+
+	.modal {
+		width: 90vw;
+		height: 80vh;
+		min-width: 0;
+		flex-direction: column;
+	}
+
+	.imageSection {
+		flex: 0 0 30%;
+		min-height: 120px;
+	}
+
+	.formSection {
+		flex: 1;
+	}
+
+	.imageContent {
+		padding: 20px;
+	}
+
+	.logoIcon {
+		font-size: 2rem;
+	}
+
+	.logoTitle {
+		font-size: 1.4rem;
+	}
+
+	.welcomeText {
+		font-size: 0.95rem;
+		margin-bottom: 8px;
+	}
+
+	.description {
+		font-size: 0.85rem;
+	}
+
+	.formHeader {
+		padding: 24px 30px 20px;
+	}
+
+	.formTitle {
+		font-size: 1.6rem;
+	}
+
+	.form {
+		padding: 24px 30px 20px;
+	}
+
+	.formContent {
+		gap: 20px;
+	}
+
+	.inputRow {
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.socialButtons {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 480px) {
+	.overlay {
+		padding: 0;
+	}
+
+	.modal {
+		width: 100vw;
+		height: 100vh;
+		border-radius: 0;
+	}
+
+	.closeButton {
+		top: 12px;
+		right: 12px;
+	}
+
+	.imageSection {
+		flex: 0 0 25%;
+	}
+
+	.imageContent {
+		padding: 16px;
+	}
+
+	.logoIcon {
+		font-size: 1.8rem;
+		margin-bottom: 8px;
+	}
+
+	.logoTitle {
+		font-size: 1.2rem;
+	}
+
+	.welcomeText {
+		font-size: 0.9rem;
+	}
+
+	.description {
+		font-size: 0.8rem;
+	}
+
+	.formHeader {
+		padding: 16px 20px 12px;
+	}
+
+	.formTitle {
+		font-size: 1.3rem;
+	}
+
+	.form {
+		padding: 16px 20px;
+	}
+
+	.formContent {
+		gap: 16px;
+	}
+}

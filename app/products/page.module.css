@@ -1,0 +1,143 @@
+.container {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.main {
+	flex: 1;
+	padding: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.pageHeader {
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.title {
+	font-size: 2.5rem;
+	color: #333;
+	margin-bottom: 0.5rem;
+}
+
+.subtitle {
+	font-size: 1.1rem;
+	color: #666;
+}
+
+.filters {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 2rem;
+	justify-content: center;
+}
+
+.filterSelect {
+	padding: 0.75rem 1rem;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	background: white;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.productGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 2rem;
+}
+
+.productCard {
+	background: white;
+	border-radius: 15px;
+	overflow: hidden;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+}
+
+.productCard:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.productImage {
+	height: 200px;
+	background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.emoji {
+	font-size: 4rem;
+}
+
+.productInfo {
+	padding: 1.5rem;
+}
+
+.productName {
+	font-size: 1.3rem;
+	font-weight: 600;
+	color: #333;
+	margin-bottom: 0.5rem;
+}
+
+.productDescription {
+	color: #666;
+	font-size: 0.9rem;
+	margin-bottom: 1rem;
+	line-height: 1.5;
+}
+
+.productPrice {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #4caf50;
+	margin-bottom: 1rem;
+}
+
+.addToCartBtn {
+	width: 100%;
+	background: linear-gradient(45deg, #4caf50, #45a049);
+	color: white;
+	border: none;
+	padding: 0.75rem;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.addToCartBtn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+@media (max-width: 768px) {
+	.main {
+		padding: 1rem;
+	}
+
+	.title {
+		font-size: 2rem;
+	}
+
+	.filters {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.filterSelect {
+		width: 100%;
+		max-width: 300px;
+	}
+
+	.productGrid {
+		grid-template-columns: 1fr;
+	}
+}
