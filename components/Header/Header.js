@@ -68,10 +68,6 @@ export default function Header() {
                             />
                             <button className={styles.searchButton}>🔍</button>
                         </div>
-                        <button className={styles.mobileCartBtn}>
-                            🛒
-                            <span className={styles.cartCount}>0</span>
-                        </button>
                     </div>
                 )}
             </header>
