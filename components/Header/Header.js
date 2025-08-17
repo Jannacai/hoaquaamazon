@@ -47,17 +47,13 @@ export default function Header() {
                         {!isMobile && (
                             <>
                                 <button className={styles.searchBtn}>🔍</button>
-                                <button className={styles.cartBtn}>
-                                    🛒
-                                    <span className={styles.cartCount}>0</span>
-                                </button>
                             </>
                         )}
                         <AuthButton />
                     </div>
                 </div>
 
-                {/* Mobile Search and Cart Bar */}
+                {/* Mobile Search Bar - Đã bỏ giỏ hàng */}
                 {isMobile && (
                     <div className={styles.mobileSearchBar}>
                         <div className={styles.searchContainer}>
