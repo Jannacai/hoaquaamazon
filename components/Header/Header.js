@@ -47,10 +47,6 @@ export default function Header() {
                         {!isMobile && (
                             <>
                                 <button className={styles.searchBtn}>🔍</button>
-                                <button className={styles.cartBtn}>
-                                    🛒
-                                    <span className={styles.cartCount}>0</span>
-                                </button>
                             </>
                         )}
                         <AuthButton />
