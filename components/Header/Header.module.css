@@ -151,7 +151,6 @@
 	padding: 0.8rem 1rem;
 	background: rgba(255, 255, 255, 0.98);
 	border-top: 1px solid rgba(0, 0, 0, 0.05);
-	gap: 1rem;
 	align-items: center;
 }
 
@@ -193,28 +192,6 @@
 
 .searchButton:hover {
 	background: rgba(76, 175, 80, 0.2);
-}
-
-.mobileCartBtn {
-	background: rgba(76, 175, 80, 0.1);
-	border: 1px solid rgba(76, 175, 80, 0.2);
-	border-radius: 12px;
-	padding: 0.8rem;
-	cursor: pointer;
-	font-size: 1.2rem;
-	color: #4caf50;
-	position: relative;
-	min-width: 48px;
-	min-height: 48px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: all 0.3s ease;
-}
-
-.mobileCartBtn:hover {
-	background: rgba(76, 175, 80, 0.15);
-	border-color: rgba(76, 175, 80, 0.3);
 }
 
 /* Mobile Bottom Navigation */

@@ -57,7 +57,7 @@ export default function Header() {
                     </div>
                 </div>
 
-                {/* Mobile Search and Cart Bar */}
+                {/* Mobile Search Bar - Đã bỏ giỏ hàng */}
                 {isMobile && (
                     <div className={styles.mobileSearchBar}>
                         <div className={styles.searchContainer}>
@@ -68,10 +68,6 @@ export default function Header() {
                             />
                             <button className={styles.searchButton}>🔍</button>
                         </div>
-                        <button className={styles.mobileCartBtn}>
-                            🛒
-                            <span className={styles.cartCount}>0</span>
-                        </button>
                     </div>
                 )}
             </header>
