@@ -41,6 +41,9 @@ export default function Home() {
     const [customerAddress, setCustomerAddress] = useState('')
     const [distanceInfo, setDistanceInfo] = useState('Nhập địa chỉ để kiểm tra khoảng cách và phí vận chuyển')
     const [customerCoordinates, setCustomerCoordinates] = useState(null)
+    const [touchStart, setTouchStart] = useState(null)
+    const [touchEnd, setTouchEnd] = useState(null)
+    const [isDragging, setIsDragging] = useState(false)
 
     // Monitor customerCoordinates state changes
     useEffect(() => {
@@ -175,13 +178,15 @@ export default function Home() {
         }
     ]
 
-    // Auto slide every 3 seconds
+    // Auto slide every 3 seconds (chỉ cho desktop)
     useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % slides.length)
-        }, 3000)
-
-        return () => clearInterval(timer)
+        const isMobile = window.innerWidth <= 768
+        if (!isMobile) {
+            const timer = setInterval(() => {
+                setCurrentSlide((prev) => (prev + 1) % slides.length)
+            }, 3000)
+            return () => clearInterval(timer)
+        }
     }, [slides.length])
 
     // Auto slide for popular items every 4 seconds
@@ -203,6 +208,68 @@ export default function Home() {
 
     const prevSlide = () => {
         setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+    }
+
+    // Xử lý touch events cho mobile slider
+    const minSwipeDistance = 50
+
+    const onTouchStart = (e) => {
+        setTouchEnd(null)
+        setTouchStart(e.targetTouches[0].clientX)
+        setIsDragging(true)
+    }
+
+    const onTouchMove = (e) => {
+        setTouchEnd(e.targetTouches[0].clientX)
+    }
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return
+        
+        const distance = touchStart - touchEnd
+        const isLeftSwipe = distance > minSwipeDistance
+        const isRightSwipe = distance < -minSwipeDistance
+        
+        if (isLeftSwipe) {
+            nextSlide()
+        }
+        if (isRightSwipe) {
+            prevSlide()
+        }
+        setIsDragging(false)
+    }
+
+    // Xử lý mouse events cho desktop
+    const onMouseDown = (e) => {
+        setTouchEnd(null)
+        setTouchStart(e.clientX)
+        setIsDragging(true)
+    }
+
+    const onMouseMove = (e) => {
+        if (isDragging) {
+            setTouchEnd(e.clientX)
+        }
+    }
+
+    const onMouseUp = () => {
+        if (!touchStart || !touchEnd) return
+        
+        const distance = touchStart - touchEnd
+        const isLeftSwipe = distance > minSwipeDistance
+        const isRightSwipe = distance < -minSwipeDistance
+        
+        if (isLeftSwipe) {
+            nextSlide()
+        }
+        if (isRightSwipe) {
+            prevSlide()
+        }
+        setIsDragging(false)
+    }
+
+    const onMouseLeave = () => {
+        setIsDragging(false)
     }
 
     // Hàm tìm kiếm và so sánh địa chỉ sử dụng HERE API
@@ -331,8 +398,48 @@ export default function Home() {
                             </button>
                         </div>
                         <div className={styles.heroSlider}>
-                            <div className={styles.sliderContainer}>
-                                {/* 3 Parallel Tilted Images */}
+                            <div 
+                                className={styles.sliderContainer}
+                                onTouchStart={onTouchStart}
+                                onTouchMove={onTouchMove}
+                                onTouchEnd={onTouchEnd}
+                                onMouseDown={onMouseDown}
+                                onMouseMove={onMouseMove}
+                                onMouseUp={onMouseUp}
+                                onMouseLeave={onMouseLeave}
+                                style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                            >
+                                {/* Mobile: Horizontal Scroll Slider */}
+                                <div className={styles.mobileSliderWrapper}>
+                                    <div 
+                                        className={styles.mobileSliderTrack}
+                                        style={{
+                                            transform: `translateX(-${currentSlide * 100}%)`,
+                                            transition: isDragging ? 'none' : 'transform 0.5s ease-in-out'
+                                        }}
+                                    >
+                                        {slides.map((slide, index) => (
+                                            <div key={index} className={styles.mobileSlideItem}>
+                                                <div 
+                                                    className={styles.mobileSlideImage}
+                                                    style={{
+                                                        backgroundImage: `url(${slide.image})`,
+                                                        backgroundSize: 'cover',
+                                                        backgroundPosition: 'center'
+                                                    }}
+                                                >
+                                                    <div className={styles.mobileSlideOverlay}>
+                                                        <span className={styles.mobileSlideEmoji}>{slide.fallback}</span>
+                                                        <h3>{slide.text}</h3>
+                                                        <p>{slide.description}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Desktop: 3 Parallel Tilted Images */}
                                 <div key={currentSlide} className={styles.parallelImagesContainer}>
                                     {slides[currentSlide].miniImages.map((img, index) => (
                                         <div
@@ -358,6 +465,23 @@ export default function Home() {
                                     ))}
                                 </div>
                             </div>
+                            
+                            {/* Navigation Arrows for Mobile */}
+                            <button 
+                                className={`${styles.sliderArrow} ${styles.sliderArrowLeft}`}
+                                onClick={prevSlide}
+                                aria-label="Previous slide"
+                            >
+                                ‹
+                            </button>
+                            <button 
+                                className={`${styles.sliderArrow} ${styles.sliderArrowRight}`}
+                                onClick={nextSlide}
+                                aria-label="Next slide"
+                            >
+                                ›
+                            </button>
+                            
                             <div className={styles.sliderDots}>
                                 {slides.map((_, dotIndex) => (
                                     <span
