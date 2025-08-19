@@ -36,10 +36,10 @@ export default function Header() {
         <>
             <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
                 <div className={styles.container}>
-                    {/* Đã chỉnh sửa bởi AI Assistant - ${new Date().toLocaleString('vi-VN')} */}
+                    {/* Đã chỉnh sửa bởi AI Assistant - Đồng bộ test - ${new Date().toLocaleString('vi-VN')} */}
                     <div className={styles.logo}>
-                        <h2>🍎Trái Cây Xanh Tươi - WORKSPACE TEST</h2>
-                        <p className={styles.logoDescription}>Tươi ngon mỗi ngày - Đã cập nhật!</p>
+                        <h2>🍎Trái Cây Xanh Tươi - ĐỒNG BỘ THÀNH CÔNG!</h2>
+                        <p className={styles.logoDescription}>Test đồng bộ từ remote workspace!</p>
                     </div>
 
                     {!isMobile && <Navigation />}
